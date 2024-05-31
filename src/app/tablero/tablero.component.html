@@ -1,0 +1,58 @@
+<body class="container">
+
+    <button>
+        <span class="button_top" (click)="reiniciar()">
+            REINICIAR
+        </span>
+      </button>
+
+    <div *ngIf="{estado}">
+
+        <div class="juegoTerminado">
+            TURNO DEL JUGADOR:
+            <h2 *ngIf="simbolojugador == true">
+                ❌
+            </h2>
+            <h2 *ngIf="simbolojugador == false">
+                ⭕
+            </h2>
+        </div>
+
+        <table class="juego">
+            <tr *ngFor="let filas of tablero; index as y;">
+                <td *ngFor="let casilla of filas; index as x;"
+                    (click)="abrirCelda(y,x)"
+                    >
+                    <div *ngIf="casilla.simbolo == true && casilla.estado == true">
+                        ⭕
+                    </div>
+
+                    <div *ngIf="casilla.simbolo == false && casilla.estado == true">
+                        ❌
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="juegoTerminado" *ngIf="estado">
+        
+        JUEGO TERMINADO
+
+        <h2 *ngIf="casillasUsadas == 9">
+            EMPATE
+        </h2>
+
+        <h2 *ngIf="simbolojugador == true && casillasUsadas != 9">
+            JUGADOR GANADOR: ⭕
+        </h2>
+
+        <h2 *ngIf="simbolojugador == false && casillasUsadas != 9">
+            JUGADOR GANADOR: ❌
+        </h2>
+
+    </div>
+    
+</body>
+
+
